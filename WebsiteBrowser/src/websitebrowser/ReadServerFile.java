@@ -20,8 +20,8 @@ import javax.swing.event.HyperlinkListener;
 
 public class ReadServerFile extends JFrame {
     
-    private JTextField enterField;
-    private JEditorPane contentsArea;
+    private final JTextField enterField;
+    private final JEditorPane contentsArea;
     
     public ReadServerFile() {
         
@@ -30,13 +30,8 @@ public class ReadServerFile extends JFrame {
         enterField = new JTextField("Enetr File URL Here");
         
         enterField.addActionListener(
-                new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                
-                getThePage(ae.getActionCommand());
-            }
+                (ActionEvent ae) -> {
+                    getThePage(ae.getActionCommand());
         });
         
         add(enterField, BorderLayout.NORTH);
@@ -46,16 +41,12 @@ public class ReadServerFile extends JFrame {
         contentsArea.setEditable(false);
         
         contentsArea.addHyperlinkListener(
-                new HyperlinkListener() {
-
-            @Override
-            public void hyperlinkUpdate(HyperlinkEvent he) {
-                if(he.getEventType() ==
-                         HyperlinkEvent.EventType.ACTIVATED) {
-                    
-                    getThePage(he.getURL().toString());
-                }
-            }
+                (HyperlinkEvent he) -> {
+                    if(he.getEventType() ==
+                            HyperlinkEvent.EventType.ACTIVATED) {
+                        
+                        getThePage(he.getURL().toString());
+                    }
         });
         
         
@@ -82,10 +73,12 @@ public class ReadServerFile extends JFrame {
             
         }
     }
-    
+   
+    /***
    public static void main(String[] args) {
         
         ReadServerFile application = new ReadServerFile();
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    ***/
 }
